@@ -13,13 +13,22 @@ namespace Player_App_2
 	/// </summary>
 	public class Program
 	{
-
+		/// <summary>
+		/// This method prints out Bot's info
+		/// This method uses delegate from Bot.cs
+		/// </summary>
+		/// <param name="b"></param>
         private static void PrintBot(APlayer b)
 		{
 			Console.WriteLine("\nBot Name: " + b.Name +
 							  "\nBot ID: " + b.Id);
 		}
 
+		/// <summary>
+		/// This method prints out player's info
+		/// This method uses delegate from UserPlayer.cs
+		/// </summary>
+		/// <param name="a"></param>
 		private static void PrintUserPlayerInfo(UserPlayer a)
         {
 			Console.WriteLine("\nPlayer Name: " + a.Name + " -- " + ClassExtension.NumOfLetters(a.Name) + " characters" +
@@ -29,8 +38,8 @@ namespace Player_App_2
 		
 
 		/// <summary>
-		/// This method uses a delegate in Player.cs
-		/// to search for a name (entered by the user)
+		/// This method allows users to search for a player(s) by name
+		/// This method uses a delegate in UserPlayer.cs
 		/// </summary>
 		/// <param name="a"></param>
 		public static void SearchByName(ArrayList players)
@@ -57,9 +66,7 @@ namespace Player_App_2
 		}
 
 		/// <summary>
-		/// This method calls the PrintPlayerNameAndEmailAndID
-		/// method in order to print out every user's name,
-		/// email and ID
+		/// This method prints out all Bots' info and all user's name, email and ID
 		/// </summary>
 		/// <param name="a"></param>
 		public static void PrintAllUsersAndBots(ArrayList players, ArrayList bots)
@@ -162,17 +169,17 @@ namespace Player_App_2
 			sr.Close();
 			fs.Close();
 
-			// Writes all Players and Bots to text file
+			// Writes all Players info to text file
 			FileStream fw = new FileStream("C://Users//bretl//source//repos//Quintrix//Wk 1//Player App 2//WritePlayerInfo.txt", FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write);
 			StreamWriter sw = new StreamWriter(fw);
-			int playerCount = 0;
+			int playerCount = 1;
             foreach (UserPlayer player in arrListOfPlayers)
             {
 				sw.Write("Player Name: " + player.Name + " -- " + ClassExtension.NumOfLetters(player.Name) + " characters" +
 						 "\nPlayer ID: " + player.Id +
 						 "\nPlayer Email " + player.Email);
-				sw.Flush();
-				if (playerCount != arrListOfPlayers.Count) sw.WriteLine("\n");
+				sw.Flush(); // clears sw buffer
+				if (playerCount != arrListOfPlayers.Count) sw.WriteLine("\n"); // Adds extra space if not end of ArrayList
 
 				playerCount++;
             }
@@ -185,10 +192,6 @@ namespace Player_App_2
 
 
 			// This loop will prompt the user for three actions:
-			// a - Search player by name and prints out that player's info,
-			// b - Print out every player's info to the console,
-			// c - exit program
-			// If none of these are selected, the it will prompt the user to enter valid option
 			bool isDone = false;
 			while (!isDone)
 			{
@@ -197,7 +200,6 @@ namespace Player_App_2
 					"\tb - Print out all Players' data\n" +
 					"\tc - Terminate program");
 				string choice = Console.ReadLine().Trim().ToLower();
-				if (choice == "c") isDone = true;
 
 				// Options for user
 				switch (choice)

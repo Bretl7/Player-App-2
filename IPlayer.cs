@@ -15,22 +15,17 @@ namespace Player_App_2
     internal interface IPlayer
     {
         /// <summary>
-        /// This method allows the user to only
-        /// retrieve a player's ID
+        /// This method allows the user to only retrieve a player's ID
         /// </summary>
         Guid Id { get; }
 
         /// <summary>
-        /// This method allows the user to
-        /// both retrieve a player's Name,
-        /// as well as set a player's Name
+        /// This method allows the user to retrieve and set Name
         /// </summary>
         string Name { get; set; }
 
         /// <summary>
-        /// This method allows the user
-        /// to retrieve a player's Email,
-        /// as well as set a player's Email
+        /// This method allows the user to retrieve and set Email
         /// </summary>
         string Email { get; set; }
     }
