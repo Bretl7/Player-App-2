@@ -12,8 +12,8 @@ namespace Player_App_2
     /// </summary>
     internal class UserPlayer : APlayer
     {
-        private string _email;
-        private readonly Guid _id = Guid.NewGuid();
+       // private string _email;
+       // private readonly Guid _id = Guid.NewGuid();
 
         /// <summary>
         /// Default constructor
@@ -21,7 +21,8 @@ namespace Player_App_2
         public UserPlayer()
         {
             base._name = "";
-            _email = "";
+            base._email = "";
+            base._level = 1;
         }
 
         /// <summary>
@@ -32,23 +33,29 @@ namespace Player_App_2
         public UserPlayer(string name, string email)
         {
             base._name = name;
-            _email = email;
+            base._email = email;
+            base._level = 1;
         }
 
         /// <summary>
         /// This method allows user to retrieve and set Name
         /// </summary>
-        public string Name { get { return _name; } set { _name = value; } }
+        public string Name { get { return base._name; } set { base._name = value; } }
 
         /// <summary>
         /// This method allows user to retrieve and set Email
         /// </summary>
-        public string Email { get { return _email; } set { _email = value; } }
+        public string Email { get { return base._email; } set { base._email = value; } }
 
         /// <summary>
         /// This method only allows user to retrieve ID
         /// </summary>
-        public Guid Id { get { return _id; } }
+        public Guid Id { get { return base._id; } }
+
+        /// <summary>
+        /// This method retrieves and sets power level
+        /// </summary>
+        public int Level { get { return base._level; } set { base._level = value; } }
 
         /// <summary>
         /// These two methods are delegates to allow developer to create custom Print methods

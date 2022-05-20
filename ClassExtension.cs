@@ -8,8 +8,9 @@ namespace Player_App_2
 {
     /// <summary>
     /// EXTENSION CLASS
-    /// This class has only one attribute
+    /// This class has two attributes
     /// Returns number of chars in a given UserPlayer name
+    /// Adds one power level to every user
     /// </summary>
     public static class ClassExtension
     {
@@ -21,6 +22,15 @@ namespace Player_App_2
         public static int NumOfLetters(this string str)
         {
             return str.Length;
+        }
+
+        /// <summary>
+        /// Adds one level of power evertime user cycles through program
+        /// </summary>
+        /// <param name="a"></param>
+        public static int AddPowerLevel(this int a)
+        {
+            return ++a;
         }
     }
 }

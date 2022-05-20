@@ -21,7 +21,8 @@ namespace Player_App_2
         private static void PrintBot(APlayer b)
 		{
 			Console.WriteLine("\nBot Name: " + b.Name +
-							  "\nBot ID: " + b.Id);
+							  "\nBot ID: " + b.Id +
+							  "\nLevel: " + b.Level);
 		}
 
 		/// <summary>
@@ -33,7 +34,8 @@ namespace Player_App_2
         {
 			Console.WriteLine("\nPlayer Name: " + a.Name + " -- " + ClassExtension.NumOfLetters(a.Name) + " characters" +
 							  "\nPlayer ID: " + a.Id +
-							  "\nPlayer Email " + a.Email);
+							  "\nPlayer Email: " + a.Email +
+							  "\nPlayer Level: " + a.Level);
 		}
 		
 
@@ -72,7 +74,7 @@ namespace Player_App_2
 		public static void PrintAllUsersAndBots(ArrayList players, ArrayList bots)
 		{
 			foreach (UserPlayer p in players)
-            {
+			{
 				//((UserPlayer)a[p]).Print(PrintPlayerNameAndEmailAndID, ((UserPlayer)a[p]));
 				p.Print(PrintUserPlayerInfo, p);
 				Console.WriteLine("---------------------------");
@@ -84,6 +86,27 @@ namespace Player_App_2
 				Console.WriteLine("---------------------------");
 			}
 			Console.WriteLine("-------------End of List-------------");
+		}
+
+		public static void WriteToFile(ArrayList a)
+        {
+			// Writes all Players info to text file
+			FileStream fw = new FileStream("C://Users//bretl//source//repos//Quintrix//Wk 1//Player App 2//WritePlayerInfo.txt", FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write);
+			StreamWriter sw = new StreamWriter(fw);
+			int playerCount = 1;
+			foreach (UserPlayer player in a)
+			{
+				sw.Write("Player Name: " + player.Name + " -- " + ClassExtension.NumOfLetters(player.Name) + " characters" +
+						 "\nPlayer ID: " + player.Id +
+						 "\nPlayer Email: " + player.Email +
+						 "\nPlayer Level: " + player.Level);
+				sw.Flush(); // clears sw buffer
+				if (playerCount != a.Count) sw.WriteLine("\n"); // Adds extra space if not end of ArrayList
+
+				playerCount++;
+			}
+			sw.Close();
+			fw.Close();
 		}
 
 
@@ -169,22 +192,6 @@ namespace Player_App_2
 			sr.Close();
 			fs.Close();
 
-			// Writes all Players info to text file
-			FileStream fw = new FileStream("C://Users//bretl//source//repos//Quintrix//Wk 1//Player App 2//WritePlayerInfo.txt", FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write);
-			StreamWriter sw = new StreamWriter(fw);
-			int playerCount = 1;
-            foreach (UserPlayer player in arrListOfPlayers)
-            {
-				sw.Write("Player Name: " + player.Name + " -- " + ClassExtension.NumOfLetters(player.Name) + " characters" +
-						 "\nPlayer ID: " + player.Id +
-						 "\nPlayer Email " + player.Email);
-				sw.Flush(); // clears sw buffer
-				if (playerCount != arrListOfPlayers.Count) sw.WriteLine("\n"); // Adds extra space if not end of ArrayList
-
-				playerCount++;
-            }
-			sw.Close();
-			fw.Close();
 
 			// Removes unused elements to save memory space
 			arrListOfPlayers.TrimToSize();
@@ -213,11 +220,23 @@ namespace Player_App_2
 					case "c":
 						isDone = true;
 						Console.WriteLine("-----------End of Program-----------");
+						// Writes to file
+						WriteToFile(arrListOfPlayers);
 						break;
 					default:
 						Console.WriteLine("Invalid entry...");
 						break;
 				}
+
+				// These loops add 1 power level for every choice made by user (even when closing program)
+				foreach (UserPlayer player in arrListOfPlayers)
+                {
+					player.Level = ClassExtension.AddPowerLevel(player.Level);
+                }
+				foreach (Bot bot in arrListOfBots)
+                {
+					bot.Level.AddPowerLevel();
+                }
 
 			}
 		}

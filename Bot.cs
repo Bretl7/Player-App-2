@@ -18,6 +18,7 @@ namespace Player_App_2
         public Bot()
         {
             base._name = "bot_" + base._id.ToString().Substring(0, 7);
+            base._level = 1;
         }
 
         /// <summary>
@@ -29,6 +30,11 @@ namespace Player_App_2
         /// This method allows user to only retrieve ID
         /// </summary>
         public Guid Id { get { return _id; } }
+
+        /// <summary>
+        /// This method retrieves and sets power level
+        /// </summary>
+        public int Level { get { return base._level; } set { base._level = value; } }
 
         /// <summary>
         /// This delegate allows developer to create custom Print methods
