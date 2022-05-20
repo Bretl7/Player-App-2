@@ -1,0 +1,28 @@
+Player Name: Jenn -- 4 characters
+Player ID: a4504fc8-ea3f-4f0b-9cdc-5a30b3e2c3c3
+Player Email jenn@gmail.com
+
+Player Name: Austin -- 6 characters
+Player ID: 43791a40-249b-4686-a83c-96296587f93b
+Player Email austin@aol.com
+
+Player Name: Mackenzi -- 8 characters
+Player ID: 39cfdfa9-a45d-4357-90f2-b9baed3cd7cf
+Player Email mackenzi@gmail.com
+
+Player Name: David -- 5 characters
+Player ID: 5984eb53-e584-4a75-95a2-d56e5fab50d6
+Player Email david@gmail.com
+
+Player Name: Ashley -- 6 characters
+Player ID: 72ca375b-fe78-4c9e-9531-9bf2df586ca8
+Player Email ashley@yahoo.com
+
+Player Name: Sam -- 3 characters
+Player ID: b7cc4aa9-f003-44a7-99f9-4a450695e8cd
+Player Email sam@aol.com
+
+Player Name: Alexandra -- 9 characters
+Player ID: 0160b686-7608-4625-8967-d6f5e4d8d649
+Player Email alexandra@gmail.com
+
